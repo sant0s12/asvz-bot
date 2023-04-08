@@ -14,6 +14,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from typing import List, Optional
 
+os.environ["WDM_PROGRESS_BAR"] = str(0)
 DRIVER_SERVICE = FirefoxService(GeckoDriverManager().install())
 
 ASVZ_SCHALTER_URL = "https://schalter.asvz.ch"
@@ -44,9 +45,7 @@ class LoginManager:
         if headless:
             options.add_argument("--headless")
 
-        driver = webdriver.Firefox(
-            service=DRIVER_SERVICE, options=options
-        )
+        driver = webdriver.Firefox(service=DRIVER_SERVICE, options=options)
 
         # go to this url so that we can store the cookies
         driver.get(ASVZ_AUTH_URL)
